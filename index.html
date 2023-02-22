@@ -22,7 +22,7 @@
                 */
                 name: "卢东东·𝒥ℴ𝓎",
                 /*
-                name: 可是是名字、网站名称等
+                name: 可以是名字、网站名称等
                 */
                 info: "偷懒界翘楚",
                 /*
@@ -33,7 +33,7 @@
                 /*
                 不用解释，默认值为9999
                 */
-                blur: "background",
+                blur: ".baniframe",
                 /*
                 blur: 想要模糊化处理的页面元素，取值可以是.className（类名）、#idName（id属性值）、tagName（标签名）
                 */
@@ -98,26 +98,31 @@
                 links: [{
                     "title": "博客",
                     "url": "https://ldd.cc/",
-                    "type": "primary",
-                    "target": "_blank"
-                }, {
-                    "title": "博客",
-                    "url": "https://ldd.cc/",
-                    "type": "waring",
-                    "target": "_blank"
-                }, {
-                    "title": "名片",
-                    "type": "success",
-                    "url": "https://lcc.cc/",
                     "func": function() {
                         //mgc.close();
-                        let cval = confirm("你点击了我，3s后跳转网页？");
+                        let cval = confirm("3s后跳转网页！「若微信端拦截，请使用浏览器访问：https://ldd.cc」");
                         if (cval) {
                             setTimeout(function() {
                                 location.href = "https://lcc.cc/ldd/"
                             }, 3000);
                         };
                     }
+                }, {
+                    "title": "名片",
+                    "url": "https://lcc.cc/",
+                    "func": function() {
+                        //mgc.close();
+                        let cval = confirm("3s后跳转网页！「若微信端拦截，请使用浏览器访问：https://si.lu」");
+                        if (cval) {
+                            setTimeout(function() {
+                                location.href = "https://lcc.cc/ldd/"
+                            }, 3000);
+                        };
+                    }
+                }, {
+                    "title": "联系",
+                    "url": "/contact/",
+                    "target": "_blank"
                 }],
                 /*
                 导航链接列表
@@ -160,7 +165,37 @@
                 console.log("打开回调函数...");
             }
             </script>
+<!--引入安全认证 Start-->
+<div id="safe">
+    <img src="photo/icon_safe.png">
+    <span>二维码已经过安全认证，请放心扫描</span>
+</div>
 <style>
+    #safe {
+    justify-content: center;
+    align-items: center;
+    background-color: #DCFCE7;
+    width: 100%;
+    height: 3rem;
+    color: #22C55E;
+    position: sticky;
+    top: 0;
+    display: flex;
+}
+</style>
+<!--引入安全认证 Start-->
+<style>
+    #safe {
+    justify-content: center;
+    align-items: center;
+    background-color: #DCFCE7;
+    width: 100%;
+    height: 3rem;
+    color: #22C55E;
+    position: sticky;
+    top: 0;
+    display: flex;
+}
 body{padding: 0;margin:0;font-family: "microsoft yahei";background:#333 ;}
 .gzwm,.gzwmbg{text-align:center;}
 .gzwmbg{background-color:rgba(0,0,0,0.5);z-index:9998;width:100%;height:100%;}
