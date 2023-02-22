@@ -1,30 +1,40 @@
+<!--
+ * @Author: 卢东东 xjoylu@gmail.com
+ * @Date: 2023-02-22 11:19:11
+ * @LastEditors: 卢东东 xjoylu@gmail.com
+ * @LastEditTime: 2023-02-22 15:25:03
+ * @FilePath: /ludongdong/gg/index.html
+ * @Description: 偷懒界翘楚
+ * @Bio：https://L.Lcc.cc
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+-->
 
 <!DOCTYPE html>
 <html>
     <head><meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-<title>卢东东·𝒥ℴ𝓎</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title   title>卢东东·𝒥ℴ𝓎</title>
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="./css/MyukiGCard.css">
-    <link rel="shortcut icon" href="https://www.ldd.cc/wp-content/uploads/2021/08/web-logo-150x150.png">
+    <link rel="shortcut icon" href="https://stackblog.cf/img/logo.png">
     <script src="./js/MyukiGCard.js"></script>
     </head>
     <body>
-        <!--引入卡片弹窗-->
+        111
         <script>
             //简单用法
             //window.MyNavCard = $MGC();
             //高级用法
             window.mgc = $MGC({
-                icon: "https://www.ldd.cc/wp-content/uploads/2021/08/web-logo-150x150.png",
+                icon: "https://stackblog.cf/img/avatar.jpg",
                 /*
                 icon: 可以是头像、网站logo等
                 */
-                name: "卢东东·𝒥ℴ𝓎",
+                name: "Stack Dev",
                 /*
                 name: 可是是名字、网站名称等
                 */
-                info: "偷懒界翘楚",
+                info: "欢迎使用MyukiGCard",
                 /*
                 info: 个性签名、网站口号、信息等，为空或者不设置将不显示
                 默认值: 空
@@ -33,11 +43,11 @@
                 /*
                 不用解释，默认值为9999
                 */
-                blur: "background",
+                blur: "#write",
                 /*
                 blur: 想要模糊化处理的页面元素，取值可以是.className（类名）、#idName（id属性值）、tagName（标签名）
                 */
-                lang: "zh-CN",
+                lang: "en-US",
                 /*
                 lang: 语言设置，目前和关闭按钮的文本有关
                 默认值: zh-CN
@@ -97,7 +107,7 @@
                 */
                 links: [{
                     "title": "My Blog",
-                    "url": "https://ldd.cc/",
+                    "url": "https://stackblog.cf/",
                     "type": "primary",
                     "target": "_blank"
                 }, {
@@ -109,13 +119,13 @@
                 }, {
                     "title": "按钮点击事件",
                     "type": "success",
-                    "url": "https://ldd.cc/",
+                    "url": "https://stackblog.cf/",
                     "func": function() {
                         //mgc.close();
                         let cval = confirm("你点击了我，3s后跳转网页？");
                         if (cval) {
                             setTimeout(function() {
-                                location.href = "https://ldd.cc/"
+                                location.href = "https://stackblog.cf/"
                             }, 3000);
                         };
                     }
