@@ -96,26 +96,25 @@
                 注: 不兼容IE
                 */
                 links: [{
-                    "title": "My Blog",
+                    "title": "博客",
                     "url": "https://ldd.cc/",
                     "type": "primary",
                     "target": "_blank"
                 }, {
-                    "title": "My GitHub",
-                    "url": "https://github.com/Uyukisan",
-                }, {
-                    "title": "MyukiGCard Usage",
-                    "url": "https://github.com/Uyukisan/MyukiGCard",
-                }, {
-                    "title": "按钮点击事件",
-                    "type": "success",
+                    "title": "博客",
                     "url": "https://ldd.cc/",
+                    "type": "waring",
+                    "target": "_blank"
+                }, {
+                    "title": "名片",
+                    "type": "success",
+                    "url": "https://lcc.cc/",
                     "func": function() {
                         //mgc.close();
                         let cval = confirm("你点击了我，3s后跳转网页？");
                         if (cval) {
                             setTimeout(function() {
-                                location.href = "https://ldd.cc/"
+                                location.href = "https://lcc.cc/ldd/"
                             }, 3000);
                         };
                     }
