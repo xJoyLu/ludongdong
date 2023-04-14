@@ -18,6 +18,8 @@
 		darkmode: 1,
 		maxWidth: "480px",
 		fontFamily: "",
+		closeDuration: 60000,
+		defaultClosed: false,
 		hitokoto: {
 			"enable": false,
 			"cats": [],
@@ -126,10 +128,12 @@
 				links[i].type ? btn.setAttribute("btn-type", links[i].type) : btn.setAttribute("btn-type",
 					"btn-default");
 				links[i].target ? btn.setAttribute("target", links[i].target) : "";
-				links[i].url && !links[i].func ? btn.setAttribute("href", links[i].url) : btn.setAttribute("href", "javascript: void (0);");
+				links[i].url && !links[i].func ? btn.setAttribute("href", links[i].url) : btn.setAttribute(
+					"href", "javascript: void (0);");
 				btn.innerText = links[i].title;
 				//添加按钮点击事件
-				links[i].func && typeof links[i].func == 'function' ? btn.addEventListener('click',links[i].func) : "";
+				links[i].func && typeof links[i].func == 'function' ? btn.addEventListener('click', links[i]
+					.func) : "";
 				cardBtnList.appendChild(btn);
 			}
 			let closeBtn = document.createElement("a");
@@ -171,10 +175,24 @@
 
 			}
 			myukiGCard.appendChild(cardBox);
+			let DoNotShowMGC = getCookie('DoNotShowMGC');
+			if (DoNotShowMGC != "" && DoNotShowMGC != null && DoNotShowMGC == "yes") {
+				addClass('hidden', myukiGCard);
+				this._closed = true;
+			}
+			//默认关闭或打开
+			if(this._setting.defaultClosed){
+				this._closed = true;
+				addClass("closed", cardBox);
+				addClass("hidden", myukiGCard);
+			}
 			document.body.appendChild(myukiGCard);
 			if (_this._setting.mini == true) {
 				let cardMini = document.createElement("div");
 				addClass("myuki-gcard_mini", cardMini);
+				if(this._setting.defaultClosed){
+					addClass("shown", cardMini);
+				}
 				let miniImg = document.createElement("img");
 				miniImg.setAttribute("src", _this._setting.icon);
 				cardMini.appendChild(miniImg);
@@ -184,11 +202,17 @@
 						removeClass("shown", cardMini);
 					});
 				});
+				if (DoNotShowMGC != "" && DoNotShowMGC != null && DoNotShowMGC == "yes") {
+					addClass('shown', cardMini);
+				}
 				document.body.appendChild(cardMini);
 			}
 			let container = document.querySelectorAll(_this._setting.blur)[0];
 			if (container != undefined) {
-				addClass("blur", container);
+				if (DoNotShowMGC != "yes" && !this._setting.defaultClosed) {
+					addClass("blur", container);
+
+				}
 			}
 
 			this._GCard = myukiGCard;
@@ -216,6 +240,9 @@
 			if (typeof closecallback == "function") {
 				closecallback();
 			}
+
+			setCookie('DoNotShowMGC', 'yes', this._setting.closeDuration);
+
 			let _this = this;
 
 			function cfun() {
@@ -237,6 +264,7 @@
 				console.warn("MyukiGCard opened.");
 				return;
 			}
+			setCookie('DoNotShowMGC', 'yes', -1000000);
 			let GCard = this._GCard;
 			let cardBox = GCard.querySelectorAll(".myuki-gcard_box")[0];
 			let cardMini = document.querySelectorAll(".myuki-gcard_mini")[0];
@@ -257,12 +285,14 @@
 			console.info("⛄️欢迎使用MyukiGCard:", {
 				"author": "Stack Dev",
 				"github": "https://github.com/Uyukisan",
+				"blog": "https://stackblog.cf",
 				"usage": "https://github.com/Uyukisan/MyukiGCard",
 				"preview": "https://uyukisan.github.io/MyukiGCard/"
 			});
 			return {
 				"author": "Stack Dev",
 				"github": "https://github.com/Uyukisan",
+				"blog": "https://stackblog.cf",
 				"usage": "https://github.com/Uyukisan/MyukiGCard",
 				"preview": "https://uyukisan.github.io/MyukiGCard/"
 			};
@@ -320,6 +350,22 @@
 
 	}
 
+	function setCookie(cname, cvalue, etime) {
+		var d = new Date();
+		d.setTime(d.getTime() + etime);
+		var expires = "expires=" + d.toGMTString();
+		document.cookie = cname + "=" + cvalue + "; " + expires;
+	}
+
+	function getCookie(cname) {
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i].trim();
+			if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+		}
+		return "";
+	}
 
 	MyukiGCard.fn.init.prototype = MyukiGCard.fn;
 	window.MyukiGCard = MyukiGCard;
