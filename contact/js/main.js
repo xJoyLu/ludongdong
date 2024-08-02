@@ -1,1 +1,0 @@
-(function($){"use strict";hopper_menuToggle();})(window.jQuery);function hopper_menuToggle(){"use-strict";let toggleMenu=document.querySelector('.toggle');let section=document.querySelector('#toggleMenu');toggleMenu.addEventListener('click',function(){toggleMenu.classList.toggle('active');section.classList.toggle('active');})}
