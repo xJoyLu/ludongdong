@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "ludongdong",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,8 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.13.0",
-    "@astrojs/check": "^0.9.1",
+    "astro": "^4.14.4",
+    "@astrojs/check": "^0.9.3",
     "typescript": "^5.5.4"
   }
 }
