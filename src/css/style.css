@@ -69,18 +69,6 @@ p {
   margin-bottom: 1em;
 }
 
-/* 隐藏滚动条，但在滚动时显示 */
-body {
-	overflow: overlay;
-  }
-
-/* 滚动条样式 */
-::-webkit-scrollbar {
-    height: 100%;
-    width: .75rem;
-    background-color: transparent
-}
-
 ::-webkit-scrollbar-thumb {
     border-radius: 9999px;
     border: .125rem solid transparent;
