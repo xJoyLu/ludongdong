@@ -56,7 +56,7 @@
     followMeButton.href = "https://ludongdong.com";
     followMeButton.target = "_top";
     followMeButton.setAttribute('title', '返回「卢东东工作室」');
-    followMeButton.innerHTML = `<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
+    followMeButton.innerHTML = `<svg width="500" height="83" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full">
     <defs>
         <linearGradient id="10555317915580811391903872" x1="40.649624%" x2="58.721916%" y1="52.022312%" y2="34.580452%">
             <stop offset="0%" style="stop-color:#ff0100;stop-opacity:0.032428"></stop>
