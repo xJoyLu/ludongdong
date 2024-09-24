@@ -17,11 +17,11 @@ button.contact-btn {
 
 /* 自定义鼠标样式 */
 * {
-    cursor: url(images/normal-cursor-small.png), default;
+    cursor: url(/images/normal-cursor-small.png), default;
     }
      
     /** 链接指针样式**/ 
-    a:hover{cursor:url(images/active-cursor-small.png), pointer;}
+    a:hover{cursor:url(/images/active-cursor-small.png), pointer;}
      
     /** 鼠标样式 结束**/
 
