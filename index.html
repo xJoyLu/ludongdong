@@ -11,72 +11,144 @@
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="/images/logo.png">
 
+  <!-- 添加动画库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    .welcome-mobile {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      z-index: 9999;
+      text-align: center;
+    }
+    
+    .welcome-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+    }
+    
+    .welcome-image {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+    
+    .welcome-text {
+      font-family: '平方公子体';
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    .countdown {
+      font-size: 1rem;
+      color: #666;
+    }
+    
+    @media (max-width: 768px) {
+      .welcome-mobile {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<!-- design inspired by https://www.authkit.com/ -->
-<div class="header">
-  <h2><a href="/" target="_blank" rel="noopener noreferrer">卢东东工作室</a></h2>
-  <div class="mid-spot" onclick="document.body.classList.toggle('gold');"></div>
-  <a href="/pages/menu.html">
-    <button class="contact-btn">
-    <span class="glow"></span>
-    <span class="contact-btn-content">菜单</span>
-  </button>
-</a>
+  <!-- 在body开始处添加欢迎界面 -->
+  <div class="welcome-mobile animate__animated animate__fadeIn">
+    <div class="welcome-content">
+      <img src="https://img.3ez.cn/i/2024/11/15/tdq7h.png" alt="欢迎" class="welcome-image animate__animated animate__bounce">
+      <div class="welcome-text animate__animated animate__fadeInUp">欢迎来到卢东东的世界！</div>
+      <div class="countdown">将在 <span id="timer">10</span> 秒后跳转...</div>
+    </div>
+  </div>
+  
+  <!-- design inspired by https://www.authkit.com/ -->
+  <div class="header">
+    <h2><a href="/" target="_blank" rel="noopener noreferrer">卢东东工作室</a></h2>
+    <div class="mid-spot" onclick="document.body.classList.toggle('gold');"></div>
+    <a href="/pages/menu.html">
+      <button class="contact-btn">
+        <span class="glow"></span>
+        <span class="contact-btn-content">菜单</span>
+      </button>
+    </a>
 
-  <div class="spotlight">
+    <div class="spotlight">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <canvas id="particleCanvas"></canvas>
+
+  <div class="accent-lines">
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <div class="heroSubP">
+    <p>偷懒界翘楚</p>
+  </div>
+  <div class="hero">
+    <div class="heroT">
+      <h2>卢东东</h2>
+      <h2>卢东东</h2>
+    </div>
+  </div>
+  <p class="heroP">正在书写序章</p>
+  <div class="mountains">
     <div></div>
     <div></div>
     <div></div>
   </div>
-</div>
+  <div class="hero-spacer"></div>
 
-<canvas id="particleCanvas"></canvas>
+  <div class="content-section">
+    <div class="content-acc">
+      <div></div>
+      <div></div>
+    </div>
+    <p class="subt">比宇宙更广阔的，是你的未来!</p>
+    <h3 class="title">卢东东工作室</h3>
+    <p class="subp">三义栈 x 思路 x 序章 x 无所事事 x ATOPES</p>
+  </div>
 
-<div class="accent-lines">
-  <div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</div>
-<div class="heroSubP">
-  <p>偷懒界翘楚</p>
-</div>
-<div class="hero">
-  <div class="heroT">
-    <h2>卢东东</h2>
-    <h2>卢东东</h2>
-  </div>
-</div>
-<p class="heroP">正在书写序章</p>
-<div class="mountains">
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
-<div class="hero-spacer"></div>
-
-<div class="content-section">
-  <div class="content-acc">
-    <div></div>
-    <div></div>
-  </div>
-  <p class="subt">比宇宙更广阔的，是你的未来!</p>
-  <h3 class="title">卢东东工作室</h3>
-  <p class="subp">三义栈 x 思路 x 序章 x 无所事事 x ATOPES</p>
-</div>
-
-<!-- partial -->
+  <!-- partial -->
   <script  src="js/script.js"></script>
+  <script>
+    // 仅在移动端执行
+    if (window.innerWidth <= 768) {
+      let timeLeft = 10;
+      const timerElement = document.getElementById('timer');
+      
+      const countdown = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          window.location.href = 'https://ldd.cc/menu.html';
+        }
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
