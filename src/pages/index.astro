@@ -1,0 +1,93 @@
+---
+import BlogCard from '@/components/BlogCard.astro'
+import Container from '@/components/Container.astro'
+import Link from '@/components/Link.astro'
+import { buttonVariants } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { SITE } from '@/consts'
+import Layout from '@/layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const blog = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE)
+---
+
+<Layout title="Home" description={SITE.DESCRIPTION}>
+  <Container class="flex flex-col gap-y-6">
+    <section>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl">lú dōng dōng</CardTitle>
+          <CardDescription
+            >卢东东 &bull; 偷懒界翘楚 &bull; <span class="font-semibold">@xJoyLu</span
+            ></CardDescription
+          >
+          <details>
+            <summary>寻找东东</summary>
+            <iframe
+              src="https://lcc.cc/"
+              frameborder="0"
+              scrolling="0"
+              width="100%"
+              height="600px"
+            ></iframe>
+            </details>
+        </CardHeader>
+        <CardContent>
+          <p class="mb-2 text-sm text-muted-foreground">
+            超业余扑街写手，孤僻固执又害羞.
+            <br />爱好： 🏍摩托 &bull; 👾打碟 &bull; 🎬记录 &bull; 📝写作 &bull; 🎮游戏 &bull; 🪖EDC
+          </p>
+          <p class="text-sm text-muted-foreground">
+            你可以通过<Link
+              href="https://ldd.cc"
+              class="text-foreground"
+              underline
+              external>ldd.cc</Link>
+              ,<Link
+              href="https://ludongdong.com"
+              class="text-foreground"
+              underline
+              external>ludongdong.com</Link>
+              访问. 或许可以看看<Link
+              href="https://ldd.cc/now"
+              class="text-foreground"
+              underline>我最近在干什么</Link
+            >.
+          </p
+        </CardContent>
+      </Card>
+    </section>
+    <section class="flex flex-col gap-y-4">
+      <h2 class="text-2xl font-bold">最新文章</h2>
+      <ul class="not-prose flex flex-col gap-y-4">
+        {
+          blog.map((post) => (
+            <li>
+              <BlogCard entry={post} />
+            </li>
+          ))
+        }
+      </ul>
+      <div class="flex justify-center">
+        <Link
+          href="/blog"
+          class={buttonVariants({ variant: 'ghost' }) + ' group'}
+        >
+          查看所有文章 <span
+            class="ml-1.5 transition-transform group-hover:translate-x-1"
+            >&rarr;</span
+          >
+        </Link>
+      </div>
+    </section>
+  </Container>
+</Layout>

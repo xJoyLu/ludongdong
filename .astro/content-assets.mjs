@@ -1,0 +1,9 @@
+
+import __ASTRO_IMAGE_IMPORT_yukc9 from "./2023.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2F2023-post%2Findex.mdx";
+import __ASTRO_IMAGE_IMPORT_NUMdh from "./2022.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2F2022-post%2Findex.mdx";
+import __ASTRO_IMAGE_IMPORT_j3Rb1 from "./2024.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2F2024-post%2Findex.mdx";
+import __ASTRO_IMAGE_IMPORT_Z12Tfhr from "../../../public/static/1200x630.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fproject-a.md";
+import __ASTRO_IMAGE_IMPORT_Z12SYgG from "../../../public/static/1200x630.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fproject-c.md";
+import __ASTRO_IMAGE_IMPORT_Z12T7h4 from "../../../public/static/1200x630.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fproject-b.md";
+export default new Map([["./2023.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2F2023-post%2Findex.mdx", __ASTRO_IMAGE_IMPORT_yukc9], ["./2022.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2F2022-post%2Findex.mdx", __ASTRO_IMAGE_IMPORT_NUMdh], ["./2024.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2F2024-post%2Findex.mdx", __ASTRO_IMAGE_IMPORT_j3Rb1], ["../../../public/static/1200x630.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fproject-a.md", __ASTRO_IMAGE_IMPORT_Z12Tfhr], ["../../../public/static/1200x630.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fproject-c.md", __ASTRO_IMAGE_IMPORT_Z12SYgG], ["../../../public/static/1200x630.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fproject-b.md", __ASTRO_IMAGE_IMPORT_Z12T7h4]]);
+		
