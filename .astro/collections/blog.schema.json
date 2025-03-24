@@ -5,18 +5,10 @@
       "type": "object",
       "properties": {
         "title": {
-          "type": "string",
-          "maxLength": 60,
-          "errorMessage": {
-            "maxLength": "Title should be 60 characters or less for optimal Open Graph display."
-          }
+          "type": "string"
         },
         "description": {
-          "type": "string",
-          "maxLength": 155,
-          "errorMessage": {
-            "maxLength": "Description should be 155 characters or less for optimal Open Graph display."
-          }
+          "type": "string"
         },
         "date": {
           "anyOf": [
