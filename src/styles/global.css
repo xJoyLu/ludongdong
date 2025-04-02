@@ -109,3 +109,9 @@
     @apply transition-none!;
   }
 }
+
+/* 自定义字体 */
+.font-sans {
+  font-family: 'jiangxizhuokai'!important;
+  font-weight: 400;
+}

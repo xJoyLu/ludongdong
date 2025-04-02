@@ -46,6 +46,9 @@ import Favicons from './Favicons.astro'
     title={SITE.title}
     href={new URL('rss.xml', Astro.site)}
   />
+  
+  <!-- 引入中文字体样式 -->
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/jxzk/dist/江西拙楷/result.css' />
 
   <Favicons />
   <ClientRouter />
