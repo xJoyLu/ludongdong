@@ -1,47 +1,74 @@
 ---
 import Breadcrumbs from '@/components/Breadcrumbs.astro'
 import Link from '@/components/Link.astro'
-import PostHead from '@/components/PostHead.astro'
 import PostNavigation from '@/components/PostNavigation.astro'
 import TableOfContents from '@/components/TableOfContents.astro'
 import { badgeVariants } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import Layout from '@/layouts/Layout.astro'
-import { getAdjacentPosts, getAllPosts, parseAuthors } from '@/lib/data-utils'
+import { parseAuthors } from '@/lib/server-utils'
 import { formatDate, readingTime } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
-import { render } from 'astro:content'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts()
+  const posts = (await getCollection('blog'))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   return posts.map((post) => ({
     params: { id: post.id },
     props: post,
   }))
 }
+type Props = CollectionEntry<'blog'>
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
+function getPostIndex(id: string): number {
+  return posts.findIndex((post) => post.id === id)
+}
+
+function getPrevPost(id: string): Props | null {
+  const postIndex = getPostIndex(id)
+  return postIndex !== -1 && postIndex < posts.length - 1
+    ? posts[postIndex + 1]
+    : null
+}
+
+function getNextPost(id: string): Props | null {
+  const postIndex = getPostIndex(id)
+  return postIndex > 0 ? posts[postIndex - 1] : null
+}
+
+const currentPostId = Astro.params.id
+const nextPost = getNextPost(currentPostId)
+const prevPost = getPrevPost(currentPostId)
 
 const post = Astro.props
-const currentPostId = Astro.params.id
 const { Content, headings } = await render(post)
-const { next, prev } = await getAdjacentPosts(currentPostId)
+
 const authors = await parseAuthors(post.data.authors ?? [])
 ---
 
-<Layout isWide>
-  <PostHead slot="head" post={post} />
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image?.src ?? '/static/1200x630.png'}
+>
   <section
-    class="grid grid-cols-[minmax(0px,1fr)_min(calc(var(--breakpoint-md)-2rem),100%)_minmax(0px,1fr)] gap-y-6"
+    class="grid grid-cols-[minmax(0px,1fr)_min(var(--breakpoint-md),100%)_minmax(0px,1fr)] gap-y-6 *:px-4"
   >
-    <div class="col-start-2">
-      <Breadcrumbs
-        items={[
-          { href: '/blog', label: 'Blog', icon: 'lucide:archive' },
-          { label: post.data.title, icon: 'lucide:file-text' },
-        ]}
-      />
-    </div>
+    <Breadcrumbs
+      items={[
+        { href: '/blog', label: 'Blog', icon: 'lucide:archive' },
+        { label: post.data.title, icon: 'lucide:file-text' },
+      ]}
+      class="col-start-2"
+    />
     {
       post.data.image && (
         <Image
@@ -49,20 +76,18 @@ const authors = await parseAuthors(post.data.authors ?? [])
           alt={post.data.title}
           width={1200}
           height={630}
-          class="col-span-full mx-auto w-full max-w-5xl object-cover"
+          class="col-span-full mx-auto w-full max-w-[1000px] object-cover"
         />
       )
     }
     <section class="col-start-2 flex flex-col gap-y-6 text-center">
-      <div class="flex flex-col">
-        <h1
-          class="mb-2 text-4xl leading-tight font-medium text-pretty sm:text-5xl"
-        >
+      <div class="flex flex-col gap-y-4">
+        <h1 class="text-4xl leading-tight font-medium text-pretty sm:text-5xl">
           {post.data.title}
         </h1>
 
         <div
-          class="text-muted-foreground mb-4 flex flex-wrap items-center justify-center gap-2 text-sm"
+          class="text-muted-foreground flex flex-wrap items-center justify-center gap-2 text-sm"
         >
           {
             authors.length > 0 && (
@@ -122,7 +147,7 @@ const authors = await parseAuthors(post.data.authors ?? [])
         </div>
       </div>
 
-      <PostNavigation prevPost={prev} nextPost={next} />
+      <PostNavigation prevPost={prevPost} nextPost={nextPost} />
     </section>
 
     {headings.length > 0 && <TableOfContents headings={headings} />}
@@ -131,7 +156,7 @@ const authors = await parseAuthors(post.data.authors ?? [])
       <Content />
     </article>
 
-    <PostNavigation prevPost={prev} nextPost={next} />
+    <PostNavigation prevPost={prevPost} nextPost={nextPost} />
   </section>
 
   <Button
