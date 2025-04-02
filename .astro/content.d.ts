@@ -162,7 +162,7 @@ declare module 'astro:content' {
   id: string;
   body?: string;
   collection: "authors";
-  data: any;
+  data: InferEntrySchema<"authors">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -170,7 +170,7 @@ declare module 'astro:content' {
   id: string;
   body?: string;
   collection: "blog";
-  data: any;
+  data: InferEntrySchema<"blog">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -178,7 +178,7 @@ declare module 'astro:content' {
   id: string;
   body?: string;
   collection: "projects";
-  data: any;
+  data: InferEntrySchema<"projects">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
