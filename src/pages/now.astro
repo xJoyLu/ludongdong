@@ -1,0 +1,43 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import { buttonVariants } from '@/components/ui/button'
+import Layout from '@/layouts/Layout.astro'
+import { cn } from '@/lib/utils'
+---
+
+<Layout>
+  <PageHead slot="head" title="Now" />
+  <Breadcrumbs items={[{ label: 'Now', icon: 'lucide:activity' }]} />
+
+    <section>
+      <div class="min-w-full">
+        <div class="prose prose-neutral mb-8 dark:prose-invert">
+            <h2>我最近在干什么</h2>
+            <p><em>（这是我近况的快照，灵感来源于 <a href="https://nownownow.com">NOW<a/>）</em></p>
+        
+            <h3>💼 工作</h3>
+            <p>今年是数字游民实验的第二年，收入依旧没达到往日工薪状态的标准，还需继续努力吧！</p>
+            <p>在中山与 33 、 PJ 开始了<strong>无所事事</strong>线下店铺的从 0 到 1，都是我们自己解决的，十分自豪。</p>
+            <p>我在门店担任主理人，现在锤得一手好柠檬茶以及跟店内客人讲解互动，极其有趣的经历。</p>
+            <p><strong>序章</strong>是我方便纳税创建的一人公司，如果你有项目，欢迎与我聊聊！</p>
+        
+            <h3>📝 输出</h3>
+            <p>我还是很喜欢记录和写作，目前存在毛病是一段时间过后，我总会觉得此前的创作是幼稚的，又删除，周而复始。</p>
+            <p>经过朋友劝导，渐已学会接受不完美的自己，今年将重新恢复<strong>《新思路周刊》</strong>和<strong>VLOG</strong>的更新，希望不久能刷到我 :)</p>
+        
+            <h3>🎗 共建</h3>
+            <p><strong>湛卢导航</strong>，数字游民导航。</p>
+        
+            <h3>🎖 习惯养成</h3>
+            <ul>
+                <li>正在学习 DJ 打碟与电子琴创作</li>
+                <li>掌握了摩托车的基本操作，计划着 60km+ 的旅程</li>
+            </ul>
+                <p>2025-03-17 乙巳[蛇]年二月十八，写于广东中山。</p>
+          </p>
+        </div>
+      </div>
+    </section>
+</Layout>
