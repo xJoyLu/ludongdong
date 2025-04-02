@@ -9,6 +9,10 @@ import { getAllProjects } from '@/lib/data-utils'
 const projects = await getAllProjects()
 ---
 
+<Layout>
+  <PageHead slot="head" title="About" />
+  <Breadcrumbs items={[{ label: 'About', icon: 'lucide:info' }]} />
+
 <section>
   <div class="min-w-full">
     <div class="prose prose-neutral mb-8 dark:prose-invert">
@@ -41,5 +45,4 @@ const projects = await getAllProjects()
     </div>
   </div>
 </section>
-</Container>
 </Layout>
