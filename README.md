@@ -4,9 +4,6 @@
 
 ## astro-erudite-wu
 
-![Stargazers]
-[![License]](LICENSE)
-
 </div>
 
 astro-erudite-wu 是一个自成体系、不带任何样式的静态博客模板，由Astro、Tailwind和shadcn/ui构建而成。它重度参考 [!astro-erudite](https://github.com/jktrn/astro-erudite) 与主题有着极大的相似之处。
