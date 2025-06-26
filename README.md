@@ -60,7 +60,7 @@ src/styles/global.css颜色以OKLCH 格式定义，使用shadcn/ui约定
 
 将新博客文章以 MDX 文件的形式添加到src/content/blog/目录中。使用以下前置内容结构：
 
-`
+```
 ---
 title: 'Your Post Title'
 description: 'A brief description of your post!'
@@ -70,7 +70,7 @@ image: './image.png'
 authors: ['author1', 'author2']
 draft: false
 ---
-`
+```
 
 ## 页面修改
-待补充...
+待补充...   
