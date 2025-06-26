@@ -57,7 +57,10 @@ src/styles/global.css颜色以OKLCH 格式定义，使用shadcn/ui约定
 网站图标是使用RealFaviconGenerator生成的。要调整网站图标，请将目录中的文件public/（例如favicon.ico、favicon.svg、apple-touch-icon.png等）替换为您自己的文件。更新网站图标文件后，您还需要调整其中的引用，src/components/Favicons.astro以匹配新的网站图标文件名和路径：
 
 ## 添加内容
+
 将新博客文章以 MDX 文件的形式添加到src/content/blog/目录中。使用以下前置内容结构：
+
+`
 ---
 title: 'Your Post Title'
 description: 'A brief description of your post!'
@@ -67,6 +70,7 @@ image: './image.png'
 authors: ['author1', 'author2']
 draft: false
 ---
+`
 
 ## 页面修改
-待补充
+待补充...
