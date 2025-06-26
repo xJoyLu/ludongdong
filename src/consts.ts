@@ -2,10 +2,11 @@ import type { IconMap, SocialLink, Site } from '@/types'
 
 export const SITE: Site = {
   title: '卢东东',
-  locale: 'zh-CN',
   description:
-    '偷懒界翘楚',
+    '偷懒姐翘楚',
   href: 'https://ldd.cc',
+  author: 'xjoylu',
+  locale: 'zh-CN',
   featuredPostCount: 2,
   postsPerPage: 3,
 }
@@ -43,7 +44,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'GitHub',
   },
   {
-    href: 'https://x.com/xjoylu',
+    href: 'https://twitter.com/xjoylu',
     label: 'Twitter',
   },
   {

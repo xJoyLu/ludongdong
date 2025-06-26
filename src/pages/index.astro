@@ -10,7 +10,7 @@ import { getRecentPosts } from '@/lib/data-utils'
 const blog = await getRecentPosts(SITE.featuredPostCount)
 ---
 
-<Layout>
+<Layout class="max-w-3xl">
   <PageHead slot="head" title="Home" />
   <section>
     <div class="rounded-lg border">
@@ -19,7 +19,8 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
         <p class="text-muted-foreground text-sm">
           卢东东 &bull; 偷懒界翘楚 &bull; <span class="font-medium">@xJoyLu</span>
         </p>
-        <details>
+        <!-- 插入数字名片 -->
+         <details>
           <summary>寻找东东</summary>
           <iframe
             src="https://lcc.cc/joy"
@@ -32,7 +33,7 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
       </div>
       <div class="p-6 pt-0">
         <p class="text-muted-foreground mb-2 text-sm">
-          超业余扑街写手，孤僻固执又害羞.
+超业余扑街写手，孤僻固执又害羞.
           <br />爱好： 🏍摩托 &bull; 👾打碟 &bull; 🎬记录 &bull; 📝写作 &bull; 🎮游戏 &bull; 🪖EDC
         </p>
         <p class="text-muted-foreground text-sm">
@@ -71,7 +72,7 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
         href="/blog"
         class={buttonVariants({ variant: 'ghost' }) + ' group'}
       >
-        查看所有博客 <span
+        查看所有文章 <span
           class="ml-1.5 transition-transform group-hover:translate-x-1"
           >&rarr;</span
         >

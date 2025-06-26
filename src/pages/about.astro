@@ -9,7 +9,7 @@ import { getAllProjects } from '@/lib/data-utils'
 const projects = await getAllProjects()
 ---
 
-<Layout>
+<Layout class="max-w-3xl">
   <PageHead slot="head" title="About" />
   <Breadcrumbs items={[{ label: 'About', icon: 'lucide:info' }]} />
 
