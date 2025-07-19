@@ -26,6 +26,9 @@
             }
           ]
         },
+        "order": {
+          "type": "number"
+        },
         "image": {
           "type": "string"
         },
