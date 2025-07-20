@@ -17,12 +17,12 @@ export const NAV_LINKS: SocialLink[] = [
     label: '博客',
   },
   {
-    href: '/authors',
-    label: '作者',
+    href: '/product',
+    label: '产品',
   },
   {
-    href: '/tags',
-    label: '标签',
+    href: '/now',
+    label: '现在',
   },
   {
     href: '/about',
@@ -31,10 +31,6 @@ export const NAV_LINKS: SocialLink[] = [
   {
     href: '/contact',
     label: '联系',
-  },
-  {
-    href: '/now',
-    label: '现在',
   },
 ]
 

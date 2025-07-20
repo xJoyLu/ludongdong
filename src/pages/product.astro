@@ -1,0 +1,188 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+import Layout from '@/layouts/Layout.astro'
+import { getAllProjects } from '@/lib/data-utils'
+
+const projects = await getAllProjects()
+
+const products = {
+  running: [
+    {
+      title: '序章XUZH',
+      desc: '一人公司',
+      icon: 'https://icons.xuzh.com/xuzh/logo.png',
+      link: 'https://xuzh.com',
+    },
+    {
+      title: '思路社区',
+      desc: '游戏爱好者与数字游民的聚集地',
+      icon: 'https://xuzh.com/assets/img/profile.webp?h=86dcf74a642f5aaf1d466c4789df7ba5',
+      link: 'https://si.lu',
+    },
+    {
+      title: 'LCC',
+      desc: '你的链接，沟通世界｜年轻人的第一个短链接！',
+      icon: 'https://icons.xuzh.com/lcc/logo.png',
+      link: 'https://lcc.cc',
+    },
+    {
+      title: '三义栈',
+      desc: '「3」步解决需求服务，让互联网更「EZ」',
+      icon: 'https://icons.xuzh.com/3ez/favicon.png',
+      link: 'https://3ez.cn',
+    },
+      {
+      title: '无所事事文化交流中心',
+      desc: '线下实体店',
+      icon: 'https://icons.xuzh.com/wusuoshishi/logo-pink.png',
+      link: 'https://wusuoshishi.com',
+    },
+  ],
+  offline: [
+    {
+      title: '完美小组件',
+      desc: 'iPhone美化APP,目前已关闭。',
+      icon: 'https://icons.xuzh.com/ldd/huaya.svg',
+      link: '#',
+    },
+  ],
+  openSource: [
+    {
+      link: 'ludongdong',
+    },
+    {
+      link: 'icondeck',
+    },
+  ],
+};
+---
+
+<Layout class="max-w-3xl">
+  <PageHead slot="head" title="Product" />
+  <Breadcrumbs items={[{ label: 'Product', icon: 'lucide:layout-dashboard' }]} />
+
+      <section class="product-section">
+        <h2>✅ 运营中</h2>
+        <div class="product-list">
+          {products.running.map(item => (
+            <a class="product-item" href={item.link} target="_blank" rel="noopener noreferrer">
+              <img src={item.icon} alt={item.title} />
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="product-section">
+        <h2>❌ 已下线</h2>
+        <div class="product-list">
+          {products.offline.map(item => (
+            <a class="product-item offline-item" href={item.link} target="_blank" rel="noopener noreferrer">
+              <img src={item.icon} alt={item.title} />
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="product-section">
+        <h2>🪵 开源</h2>
+        <div class="product-list">
+          {products.openSource.map(item => (
+<a href={`https://github.com/xjoylu/${item.link}`} target="_blank"><img src={`https://github-readme-stats.vercel.app/api/pin/?username=xjoylu&repo=${item.link}`} /></a>))}
+      </section>
+</Layout>
+
+
+    <style>
+      .product-section {
+        margin-bottom: 2.5rem;
+      }
+
+      .product-section h2 {
+        color: #111;  
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .product-section h2 {
+          color: #333;
+        }
+      }
+
+      .product-list {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .product-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: saturate(180%) blur(10px);
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .product-item:hover {
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .product-item {
+          background: rgba(0, 0, 0, 0.4);
+          box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+          color: #ddd;
+        }
+
+        .product-item:hover {
+          background: rgba(0, 0, 0, 0.7);
+        }
+      }
+
+      .product-item img {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        margin-right: 1rem;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+      }
+
+      .product-item.offline-item {
+        opacity: 0.6;
+      }
+
+      .product-item h3 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .product-item p {
+        margin: 0.25rem 0 0;
+        font-size: 0.875rem;
+        color: #444;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .product-item p {
+          color: #bbb;
+        }
+      }
+    </style>
