@@ -99,7 +99,17 @@ const products = {
         <div class="product-list">
           {products.openSource.map(item => (
 <a href={`https://github.com/xjoylu/${item.link}`} target="_blank"><img src={`https://github-readme-stats.vercel.app/api/pin/?username=xjoylu&repo=${item.link}`} /></a>))}
-      </section>
+
+        <section class="product-section">
+          <h2>📌 网站地图</h2>
+          <div class="product-list">
+            <a class="nav-card" href="/authors" target="_blank" rel="noopener noreferrer">👤 作者</a>
+            <a class="nav-card" href="/tags" target="_blank" rel="noopener noreferrer">🏷️ 标签</a>
+            <a class="nav-card" href="https://status.ldd.cc/" target="_blank" rel="noopener noreferrer">☁️ 云服务监控看板</a>
+            <a class="nav-card" href="https://echo.ldd.cc/" target="_blank" rel="noopener noreferrer">🎬 读书&观影纪录</a>
+          </div>
+        </section>
+
 </Layout>
 
 
@@ -185,4 +195,51 @@ const products = {
           color: #bbb;
         }
       }
+
+/* 📦 导航区块容器 2.x 新增*/
+.product-section {
+  margin-bottom: 2.5rem;
+  padding: 1rem;
+}
+
+/* 📚 导航按钮列表容器：横向排列 + 自动换行 */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+/* 🧊 每个导航按钮卡片 */
+.nav-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 80px;
+  padding: 1rem;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  color: #111;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 🪄 鼠标悬停效果 */
+.nav-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* 📱 移动端优化（可选） */
+@media (max-width: 500px) {
+  .nav-card {
+    width: 100%;
+  }
+}
     </style>
