@@ -1,0 +1,166 @@
+---
+title: '飞书记账机器人代码演示'
+description: '“偷懒的尽头，是自动化。”'
+date: 2025-07-31
+tags: ['折腾',]
+image: './prototype.png'
+authors: ['joy']
+---
+```
+<?php
+// 配置区（示例值已脱敏）
+define('APP_ID', 'cli_xxxxxxxxxxxxxxxx');               // 飞书应用 ID
+define('APP_SECRET', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx');   // 飞书应用密钥
+define('APP_TOKEN', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx');    // 事件校验 Token（可选）
+define('APP_BTABLE_APP_ID', 'xxxxxxxxxxxxxxxxxxxxxxxx'); // 多维表格 App ID
+define('TABLE_ID', 'tblxxxxxxxxxxxxxx');                 // 多维表格 Table ID
+define('LOG_FILE', __DIR__.'/log.txt');                  // 日志文件路径
+define('DEBUG_MODE', true);                              // 是否开启调试模式
+
+// 简单写日志函数
+function log_write($msg) {
+    if (!DEBUG_MODE) return;
+    file_put_contents(LOG_FILE, date('Y-m-d H:i:s').' '.$msg.PHP_EOL, FILE_APPEND);
+}
+
+// 获取 tenant_access_token
+function get_token() {
+    $url = 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal/';
+    $post = json_encode(['app_id'=>APP_ID, 'app_secret'=>APP_SECRET]);
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $post,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+    ]);
+    $res = curl_exec($ch);
+    curl_close($ch);
+    log_write("token response: $res");
+    $data = json_decode($res, true);
+    return $data['tenant_access_token'] ?? '';
+}
+
+// 清理文本，去除所有@标签及尾部多余内容，返回纯文本
+function clean_text($text) {
+    // 去除飞书的 <at ...>...</at> 标签
+    $text = preg_replace('/<at[^>]*>.*?<\/at>/s', '', $text);
+    // 去除尾部类似 @xxx 的残留（例如@_user_1）
+    $text = preg_replace('/@[\w_-]+$/', '', $text);
+    // 多余空白变成单空格，且两端去空
+    $text = trim(preg_replace('/\s+/', ' ', $text));
+    return $text;
+}
+
+// 解析文本，返回字段数组或false
+function parse_text($text) {
+    $parts = explode(' ', $text);
+    if (count($parts) < 4) return false;
+    return [
+        '名称' => $parts[0],
+        '金额' => floatval($parts[1]),
+        '用途' => $parts[2],
+        '平台' => $parts[3],
+    ];
+}
+
+// 写入多维表格
+function write_bitable($token, $fields) {
+    $url = "https://open.feishu.cn/open-apis/bitable/v1/apps/".APP_BTABLE_APP_ID."/tables/".TABLE_ID."/records";
+    $post = json_encode(['fields'=>$fields], JSON_UNESCAPED_UNICODE);
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $post,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer '.$token,
+            'Content-Type: application/json',
+        ],
+    ]);
+    $res = curl_exec($ch);
+    curl_close($ch);
+    log_write("bitable response: $res");
+    return json_decode($res,true);
+}
+
+// 回复消息，支持群聊和私聊，引用原消息
+function reply_msg($token, $chat_id, $root_id, $text) {
+    $url = 'https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id';
+    $post = json_encode([
+        'receive_id' => $chat_id,
+        'msg_type' => 'text',
+        'content' => json_encode(['text' => $text], JSON_UNESCAPED_UNICODE),
+        'root_id' => $root_id,
+    ], JSON_UNESCAPED_UNICODE);
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $post,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer '.$token,
+            'Content-Type: application/json',
+        ],
+    ]);
+    $res = curl_exec($ch);
+    curl_close($ch);
+    log_write("reply response: $res");
+}
+
+// 主入口
+$input = file_get_contents('php://input');
+log_write("raw input: $input");
+
+$data = json_decode($input, true);
+if (!$data) {
+    echo json_encode(['code'=>400, 'msg'=>'Invalid JSON']);
+    exit;
+}
+
+// URL 验证请求
+if (isset($data['type']) && $data['type'] === 'url_verification') {
+    echo json_encode(['challenge'=>$data['challenge']]);
+    exit;
+}
+
+// 只处理消息事件
+if (($data['header']['event_type'] ?? '') === 'im.message.receive_v1') {
+    $open_id = $data['event']['sender']['sender_id']['open_id'] ?? '';
+    $chat_id = $data['event']['message']['chat_id'] ?? '';
+    $message_id = $data['event']['message']['message_id'] ?? '';
+    $msg_content = $data['event']['message']['content'] ?? '{}';
+    $msg_arr = json_decode($msg_content, true);
+    $text_raw = $msg_arr['text'] ?? '';
+
+    log_write("原始文本: $text_raw");
+
+    // 清理文本
+    $text = clean_text($text_raw);
+    log_write("清理后文本: $text");
+
+    // 解析
+    $fields = parse_text($text);
+    if (!$fields) {
+        $token = get_token();
+        reply_msg($token, $chat_id, $message_id, "❗ 格式错误，请输入：名称 金额 用途 平台\n示例：电视 300 设备 京东");
+        echo json_encode(['code'=>0, 'msg'=>'ok']);
+        exit;
+    }
+
+    // 获取token，写入多维表格
+    $token = get_token();
+    $res = write_bitable($token, $fields);
+    if (($res['code'] ?? 1) === 0) {
+        reply_msg($token, $chat_id, $message_id, "✅ 记账成功：{$fields['名称']} - {$fields['金额']} 元");
+    } else {
+        reply_msg($token, $chat_id, $message_id, "❌ 记账失败：" . ($res['msg'] ?? '未知错误'));
+    }
+
+    echo json_encode(['code'=>0, 'msg'=>'ok']);
+    exit;
+}
+
+// 其他事件直接返回ok
+echo json_encode(['code'=>0, 'msg'=>'ok']);
+```
