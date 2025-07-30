@@ -13,33 +13,309 @@ const projects = await getAllProjects()
   <PageHead slot="head" title="Now" />
   <Breadcrumbs items={[{ label: 'Now', icon: 'lucide:activity' }]} />
 
-    <section>
-      <div class="min-w-full">
-        <div class="prose prose-neutral mb-8 dark:prose-invert">
-            <h2>我最近在干什么</h2>
-            <p><em>（这是我近况的快照，灵感来源于 <a href="https://nownownow.com">NOW<a/>）</em></p>
-        
-            <h3>💼 工作</h3>
-            <p>今年是数字游民实验的第二年，收入依旧没达到往日工薪状态的标准，还需继续努力吧！</p>
-            <p>在中山与 33 、 PJ 开始了<strong>无所事事</strong>线下店铺的从 0 到 1，都是我们自己解决的，十分自豪。</p>
-            <p>我在门店担任主理人，现在锤得一手好柠檬茶以及跟店内客人讲解互动，极其有趣的经历。</p>
-            <p><strong>序章</strong>是我方便纳税创建的一人公司，如果你有项目，欢迎与我聊聊！</p>
-        
-            <h3>📝 输出</h3>
-            <p>我还是很喜欢记录和写作，目前存在毛病是一段时间过后，我总会觉得此前的创作是幼稚的，又删除，周而复始。</p>
-            <p>经过朋友劝导，渐已学会接受不完美的自己，今年将重新恢复<strong>《新思路周刊》</strong>和<strong>VLOG</strong>的更新，希望不久能刷到我 :)</p>
-        
-            <h3>🎗 共建</h3>
-            <p><strong>湛卢导航</strong>，数字游民导航。</p>
-        
-            <h3>🎖 习惯养成</h3>
-            <ul>
-                <li>正在学习 DJ 打碟与电子琴创作</li>
-                <li>掌握了摩托车的基本操作，计划着 60km+ 的旅程</li>
-            </ul>
-                <p>2025-03-17 乙巳[蛇]年二月十八，写于广东中山。</p>
-          </p>
+<section class="wrapper">
+  <div class="card">
+    <!-- 头部信息区 -->
+    <div class="header">
+      <img src="/avatar/joy.png" alt="avatar" class="avatar" />
+      <h1 class="name">卢东东</h1>
+      <div class="location">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+        <span>中山市，中国</span>
+      </div>
+      <div class="tags" role="list">
+        <span class="tag" role="listitem">INTJ</span>
+        <span class="tag" role="listitem">数字难民</span>
+        <span class="tag" role="listitem">自由职业</span>
+      </div>
+    </div>
+
+    <!-- 内容区块 -->
+    <div class="content">
+      <!-- Now 区块 -->
+      <div class="block now-block" aria-label="现在正在做的事情">
+        <h2><span class="icon pink">⏳</span> @Link</h2>
+        <p class="now-text">江湖夜雨十年灯，我正在做的事，就在这里。</p>
+        <a class="now-link" href="https://link.ldd.cc" target="_blank" rel="noopener noreferrer" aria-label="访问我的 Now 页面">🌙 打开我的说明书</a>
+      </div>
+
+      <div class="block">
+        <h2><span class="icon">✨</span> 亮点</h2>
+          <ul>
+            <li>曾在深夜灵感爆棚，成功把一个需求文档写成了武侠小说；</li>
+            <li>拿 Figma 画了五百张图，只为选出一个按钮圆角；</li>
+            <li>拒绝内卷，成功用 Markdown 写完自己的离职报告；</li>
+            <li>被 ChatGPT 评为“使用最花式、最穷困潦倒的用户”三连冠；</li>
+            <li>目前正在运营一个没有用户的产品，用户画像非常稳定。</li>
+          </ul>
+      </div>
+      <div class="block">
+        <h2><span class="icon">🧩</span> 擅长</h2>
+        <div class="skills-grid" role="list">
+          <div class="skill-box" role="listitem">熬夜</div>
+          <div class="skill-box" role="listitem">拖延</div>
+          <div class="skill-box" role="listitem">躺平</div>
+          <div class="skill-box" role="listitem">瞎掰</div>
         </div>
       </div>
-    </section>
+      <div class="block">
+        <h2><span class="icon">🎈</span> 兴趣</h2>
+        <p>🏍摩托 • 👾打碟 • 🎬记录 • 📝写作 • 🎮游戏 • 🪖EDC</p>
+      </div>
+    </div>
+
+    <!-- 操作按钮区 -->
+    <div class="footer">
+      <button onclick="alert('🎉 你触发了神秘代码！【代码】🎟️  4131919  🎟️')">
+       🎁 神秘代码 <span class="arrow">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  body {
+    background: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 顶部靠齐 */
+    /* 占用位置太多，移除 */
+    padding: 2rem 1rem 1rem;
+    /* min-height: 100vh; */
+  }
+  .card {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 0rem; /* 顶部间距 */
+  }
+  .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  }
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 4px solid white;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+  }
+  .name {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    color: #3a3a3a;
+  }
+  .location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+  }
+  .location .icon {
+    width: 16px;
+    height: 16px;
+    fill: #777;
+    margin-right: 4px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .tag {
+    background: rgba(93, 135, 255, 0.25);
+    color: #5d87ff;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+  .tag:hover {
+    background: #5d87ff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .content {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .block h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #3a3a3a;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .block p, .block ul {
+    font-size: 1rem;
+    color: #3a3a3a;
+    line-height: 1.7;
+  }
+  .block ul {
+    padding-left: 1.2rem;
+    list-style: disc;
+  }
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .skill-box {
+    background: rgba(93, 135, 255, 0.2);
+    color: #5d87ff;
+    padding: 0.4rem 0.9rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    transition: background 0.2s ease;
+    cursor: default;
+  }
+  .skill-box:hover {
+    background: #5d87ff;
+    color: white;
+  }
+  .footer {
+    margin-top: 2rem;
+  }
+  .footer button {
+    width: 100%;
+    background: rgba(93, 135, 255, 0.2);
+    border: none;
+    color: #5d87ff;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer button:hover {
+    background: #5d87ff;
+    color: white;
+  }
+  .footer .arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  .footer button:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Now 区块专属样式 */
+  .now-block {
+    position: relative;
+    padding: 1.25rem 1.5rem;
+    border-radius: 20px;
+    background: rgba(255 255 255 / 0.7);
+    box-shadow:
+      0 0 8px rgba(255 132 162 / 0.8),
+      inset 0 0 12px rgba(255 132 162 / 0.5);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    color: #913d7a;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    transition: border-color 3s ease-in-out;
+    animation: borderPulse 6s ease-in-out infinite;
+    user-select: none;
+  }
+  .now-block h2 {
+    color: #d94a96;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.1em;
+  }
+  .now-text {
+    margin-top: 0.4rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    text-indent: 2em;
+    color: #71305c;
+  }
+  .now-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(45deg, #9b59b6, #e91e63);
+    color: white;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 0 10px #e91e63cc;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    letter-spacing: 0.05em;
+  }
+  .now-link:hover,
+  .now-link:focus {
+    box-shadow: 0 0 20px #f06292cc;
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  @keyframes borderPulse {
+    0%, 100% {
+      border-color: transparent;
+      box-shadow:
+        0 0 8px rgba(255 132 162 / 0.8),
+        inset 0 0 12px rgba(255 132 162 / 0.5);
+    }
+    50% {
+      border-color: #ff84a2;
+      box-shadow:
+        0 0 20px rgba(255 132 162 / 1),
+        inset 0 0 18px rgba(255 132 162 / 0.8);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      padding: 1.5rem;
+    }
+    .name {
+      font-size: 1.5rem;
+    }
+    .tag {
+      font-size: 0.75rem;
+    }
+    .skill-box {
+      font-size: 0.8rem;
+    }
+    .now-block {
+      font-size: 0.95rem;
+      padding: 1rem 1.2rem;
+    }
+    .now-text {
+      text-indent: 1.5em;
+    }
+    .now-link {
+      padding: 0.45rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>
 </Layout>
