@@ -66,8 +66,13 @@ const projects = await getAllProjects()
 
     <!-- 操作按钮区 -->
     <div class="footer">
-      <button onclick="alert('🎉 你触发了神秘代码！【代码】🎟️  4131919  🎟️')">
-       🎁 神秘代码 <span class="arrow">→</span>
+      <button onclick="
+        alert('🎉 你触发了神秘代码！【代码】🎟️  4131919  🎟️');
+        setTimeout(() => {
+          window.location.href = 'https://link.ldd.cc';
+        }, 3000);
+      ">
+        🎁 神秘代码 <span class='arrow'>→</span>
       </button>
     </div>
   </div>
