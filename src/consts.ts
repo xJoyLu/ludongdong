@@ -3,7 +3,7 @@ import type { IconMap, SocialLink, Site } from '@/types'
 export const SITE: Site = {
   title: '卢东东',
   description:
-    '偷懒姐翘楚',
+    '偷懒界翘楚',
   href: 'https://ldd.cc',
   author: 'xjoylu',
   locale: 'zh-CN',
