@@ -16,17 +16,21 @@ const projects = await getAllProjects()
 <section class="wrapper">
   <div class="card">
     <!-- 头部信息区 -->
-    <div class="header">
-      <img src="/avatar/joy.png" alt="avatar" class="avatar" />
-      <h1 class="name">卢东东</h1>
-      <div class="location">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
-        <span>中山市，中国</span>
+    <div class="header flex-header">
+      <div class="avatar-rainbow">
+        <img src="https://icons.xuzh.com/ldd/avatar-ai.jpg" alt="avatar" class="avatar" />
       </div>
-      <div class="tags" role="list">
-        <span class="tag" role="listitem">INTJ</span>
-        <span class="tag" role="listitem">数字难民</span>
-        <span class="tag" role="listitem">自由职业</span>
+      <div class="header-info">
+        <h1 class="name">卢东东</h1>
+        <div class="location">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          <span>中山市，中国</span>
+        </div>
+        <div class="tags" role="list">
+          <span class="tag" role="listitem">INTJ</span>
+          <span class="tag" role="listitem">数字难民</span>
+          <span class="tag" role="listitem">自由职业</span>
+        </div>
       </div>
     </div>
 
@@ -65,7 +69,7 @@ const projects = await getAllProjects()
     </div>
 
     <!-- 操作按钮区 -->
-    <div class="footer">
+    <!-- <div class="footer">
       <button onclick="
         alert('🎉 你触发了神秘代码！【代码】🎟️  4131919  🎟️');
         setTimeout(() => {
@@ -74,8 +78,29 @@ const projects = await getAllProjects()
       ">
         🎁 神秘代码 <span class='arrow'>→</span>
       </button>
+    </div> -->
+    
+<div class="flex items-center justify-between bg-[#f9fafb] p-4 rounded-xl font-sans mt-8">
+  <!-- 左侧文本区 -->
+  <div>
+    <div class="font-bold text-base flex items-center gap-2">
+      📱 扫码查看个人说明书
+    </div>
+    <div class="text-gray-500 text-sm mt-1">
+      「偷懒界翘楚的独白情书」
     </div>
   </div>
+
+  <!-- 右侧二维码 -->
+  <div>
+    <img
+      src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://link.ldd.cc"
+      alt="扫码二维码"
+      class="w-20 h-20 rounded-lg"
+    />
+  </div>
+</div>
+
 </section>
 
 <style>
@@ -86,10 +111,8 @@ const projects = await getAllProjects()
   .wrapper {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* 顶部靠齐 */
-    /* 占用位置太多，移除 */
+    align-items: flex-start;
     padding: 2rem 1rem 1rem;
-    /* min-height: 100vh; */
   }
   .card {
     width: 100%;
@@ -101,34 +124,66 @@ const projects = await getAllProjects()
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 0rem; /* 顶部间距 */
+    margin-top: 0rem;
   }
   .card:hover {
     transform: scale(1.02);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
   }
+  /* 头部区块布局 */
+  .flex-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .avatar-rainbow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 104px;
+    height: 104px;
+    background: conic-gradient(
+      #ff0000 0deg, #ff9900 60deg, #ffee00 120deg, #33ff00 180deg,
+      #00ffee 240deg, #3300ff 300deg, #ff00cc 360deg
+    );
+    border-radius: 50%;
+    padding: 4px;
+    box-sizing: border-box;
+    /* box-shadow: 0 0 0 4px rgba(255,255,255,0.5); */
+  }
   .avatar {
     width: 96px;
     height: 96px;
     border-radius: 50%;
-    border: 4px solid white;
+    /* border: 4px solid white; */
     object-fit: cover;
-    margin: 0 auto 1rem;
+    margin: 0;
+    display: block;
+  }
+  .header-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.3rem;
+    margin-top: 0.1rem;
   }
   .name {
-    text-align: center;
+    text-align: left;
     font-size: 1.8rem;
     font-weight: 600;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 0.2rem 0;
     color: #3a3a3a;
   }
   .location {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-size: 0.9rem;
     color: #777;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
   }
   .location .icon {
     width: 16px;
@@ -139,9 +194,9 @@ const projects = await getAllProjects()
   .tags {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
   }
   .tag {
     background: rgba(93, 135, 255, 0.25);
@@ -301,8 +356,27 @@ const projects = await getAllProjects()
     .card {
       padding: 1.5rem;
     }
+    .flex-header {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .avatar-rainbow {
+      margin-bottom: 0.5rem;
+    }
+    .header-info {
+      align-items: center;
+      text-align: center;
+    }
     .name {
       font-size: 1.5rem;
+      text-align: center;
+    }
+    .location {
+      justify-content: center;
+    }
+    .tags {
+      justify-content: center;
     }
     .tag {
       font-size: 0.75rem;
