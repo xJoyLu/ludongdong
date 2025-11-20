@@ -2,7 +2,7 @@
 
 <div align="center">
 
-## astro-erudite-wu
+## astro-wu
 
 </div>
 
