@@ -1,5 +1,0 @@
-
-User-agent: *
-Allow: /
-
-Sitemap: https://astro-erudite.vercel.app/sitemap-index.xml
