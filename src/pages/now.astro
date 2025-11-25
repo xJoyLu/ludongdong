@@ -2,399 +2,153 @@
 import Breadcrumbs from '@/components/Breadcrumbs.astro'
 import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
-import ProjectCard from '@/components/ProjectCard.astro'
 import Layout from '@/layouts/Layout.astro'
-import { getAllProjects } from '@/lib/data-utils'
-
-const projects = await getAllProjects()
 ---
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Now" />
   <Breadcrumbs items={[{ label: 'Now', icon: 'lucide:activity' }]} />
 
-<section class="wrapper">
-  <div class="card">
-    <!-- 头部信息区 -->
-    <div class="header flex-header">
-      <div class="avatar-rainbow">
-        <img src="https://icons.xuzh.com/ldd/avatar-ai.jpg" alt="avatar" class="avatar" />
-      </div>
-      <div class="header-info">
-        <h1 class="name">卢东东</h1>
-        <div class="location">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
-          <span>中山市，中国</span>
+  <section class="flex justify-center px-4 py-10">
+    <div
+      class="w-full max-w-xl rounded-[32px] backdrop-blur-2xl 
+             bg-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.08)]
+             ring-1 ring-white/30 p-8 transition-all 
+             hover:shadow-[0_12px_45px_rgba(0,0,0,0.12)] 
+             hover:scale-[1.012]">
+
+      <!-- Header -->
+      <div class="flex gap-4 items-start mb-10">
+        <div class="p-[3px] rounded-full bg-gradient-to-br 
+                    from-white/70 via-white/30 to-white/5 backdrop-blur-xl 
+                    shadow-inner">
+          <img
+            src="https://icons.xuzh.com/ldd/avatar-ai.jpg"
+            class="w-24 h-24 rounded-full shadow-[0_4px_15px_rgba(0,0,0,0.15)]"
+          />
         </div>
-        <div class="tags" role="list">
-          <span class="tag" role="listitem">INTJ</span>
-          <span class="tag" role="listitem">数字难民</span>
-          <span class="tag" role="listitem">自由职业</span>
+
+        <div class="flex flex-col">
+          <h1 class="text-3xl font-semibold text-gray-900 tracking-tight">
+            卢东东
+          </h1>
+
+          <!-- Location -->
+          <div class="flex items-center text-gray-600 text-sm mt-1">
+            <svg class="w-4 h-4 mr-1 opacity-70" viewBox="0 0 24 24">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+              />
+            </svg>
+            中山市，中国
+          </div>
+
+          <!-- Badges -->
+          <div class="flex flex-wrap gap-2 mt-3">
+            <span class="px-3 py-1 rounded-full text-sm text-gray-700 bg-white/60 backdrop-blur-md shadow-sm">
+              INTJ
+            </span>
+            <span class="px-3 py-1 rounded-full text-sm text-gray-700 bg-white/60 backdrop-blur-md shadow-sm">
+              数字难民
+            </span>
+            <span class="px-3 py-1 rounded-full text-sm text-gray-700 bg-white/60 backdrop-blur-md shadow-sm">
+              自由职业
+            </span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 内容区块 -->
-    <div class="content">
-      <!-- Now 区块 -->
-      <div class="block now-block" aria-label="现在正在做的事情">
-        <h2><span class="icon pink">⏳</span> @Link</h2>
-        <p class="now-text">江湖夜雨十年灯，我正在做的事，就在这里。</p>
-        <a class="now-link" href="https://link.ldd.cc" target="_blank" rel="noopener noreferrer" aria-label="访问我的 Now 页面">🌙 打开我的说明书</a>
+      <!-- NOW block -->
+      <div
+        class="p-6 rounded-2xl bg-gradient-to-br 
+               from-pink-50/70 to-rose-100/40
+               border border-white/40 backdrop-blur-xl
+               shadow-[inset_0_0_15px_rgba(255,255,255,0.3)]
+               animate-[pulse_5s_ease-in-out_infinite]">
+
+        <h2 class="text-pink-600 font-semibold mb-2 text-lg">
+          ⏳ 我正在做什么
+        </h2>
+
+        <p class="text-pink-700 leading-relaxed">
+          江湖夜雨十年灯，我正在做的事，就在这里。
+        </p>
+
+        <a
+          href="https://link.ldd.cc"
+          target="_blank"
+          class="inline-block mt-4 px-5 py-2.5 rounded-full text-white text-sm
+                 bg-gradient-to-r from-pink-500 to-purple-500 
+                 shadow-[0_4px_14px_rgba(0,0,0,0.15)]
+                 hover:shadow-[0_6px_20px_rgba(0,0,0,0.20)]
+                 hover:scale-[1.05] transition-all">
+          🌙 打开我的说明书
+        </a>
       </div>
 
-      <div class="block">
-        <h2><span class="icon">✨</span> 亮点</h2>
-          <ul>
-            <li>曾在深夜灵感爆棚，成功把一个需求文档写成了武侠小说；</li>
-            <li>拿 Figma 画了五百张图，只为选出一个按钮圆角；</li>
-            <li>拒绝内卷，成功用 Markdown 写完自己的离职报告；</li>
-            <li>被 ChatGPT 评为“使用最花式、最穷困潦倒的用户”三连冠；</li>
-            <li>目前正在运营一个没有用户的产品，用户画像非常稳定。</li>
-          </ul>
+      <!-- Highlights -->
+      <div class="mt-10">
+        <h2 class="text-lg font-semibold flex items-center gap-2 text-gray-900">
+          ✨ 亮点
+        </h2>
+
+        <ul class="text-gray-700 mt-3 leading-relaxed space-y-2">
+          <li>深夜把需求文档写成武侠小说；</li>
+          <li>为了选按钮圆角，在 Figma 画了五百个组件；</li>
+          <li>用 Markdown 提交离职报告，自带淡定冷感；</li>
+          <li>被 ChatGPT 评为“最穷困潦倒但最有创意的用户”；</li>
+          <li>运营一个没有用户的产品，用户画像相当稳定。</li>
+        </ul>
       </div>
-      <div class="block">
-        <h2><span class="icon">🧩</span> 擅长</h2>
-        <div class="skills-grid" role="list">
-          <div class="skill-box" role="listitem">熬夜</div>
-          <div class="skill-box" role="listitem">拖延</div>
-          <div class="skill-box" role="listitem">躺平</div>
-          <div class="skill-box" role="listitem">瞎掰</div>
+
+      <!-- Skills -->
+      <div class="mt-10">
+        <h2 class="text-lg font-semibold flex items-center gap-2 text-gray-900">
+          🧩 擅长
+        </h2>
+
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="px-3 py-1 rounded-full bg-white/50 backdrop-blur-md text-gray-700 shadow-sm">
+            熬夜
+          </span>
+          <span class="px-3 py-1 rounded-full bg-white/50 backdrop-blur-md text-gray-700 shadow-sm">
+            拖延
+          </span>
+          <span class="px-3 py-1 rounded-full bg-white/50 backdrop-blur-md text-gray-700 shadow-sm">
+            躺平
+          </span>
+          <span class="px-3 py-1 rounded-full bg-white/50 backdrop-blur-md text-gray-700 shadow-sm">
+            瞎掰
+          </span>
         </div>
       </div>
-      <div class="block">
-        <h2><span class="icon">🎈</span> 兴趣</h2>
-        <p>🏍摩托 • 👾打碟 • 🎬记录 • 📝写作 • 🎮游戏 • 🪖EDC</p>
+
+      <!-- Interests -->
+      <div class="mt-10">
+        <h2 class="text-lg font-semibold flex items-center gap-2 text-gray-900">
+          🎈 兴趣
+        </h2>
+        <p class="text-gray-700 mt-2">
+          🏍 摩托 • 👾 打碟 • 🎬 记录 • 📝 写作 • 🎮 游戏 • 🪖 EDC
+        </p>
+      </div>
+
+      <!-- QR section -->
+      <div
+        class="mt-12 p-5 rounded-2xl flex items-center justify-between
+               bg-white/50 backdrop-blur-xl shadow-inner border border-white/40">
+        <div>
+          <div class="font-semibold text-gray-900 text-base">
+            📱 扫码查看个人说明书
+          </div>
+          <div class="text-gray-500 text-sm mt-1">偷懒界翘楚的独白情书</div>
+        </div>
+
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://link.ldd.cc"
+          class="w-20 h-20 rounded-xl shadow-md"
+        />
       </div>
     </div>
-
-    <!-- 操作按钮区 -->
-    <!-- <div class="footer">
-      <button onclick="
-        alert('🎉 你触发了神秘代码！【代码】🎟️  4131919  🎟️');
-        setTimeout(() => {
-          window.location.href = 'https://link.ldd.cc';
-        }, 1000);
-      ">
-        🎁 神秘代码 <span class='arrow'>→</span>
-      </button>
-    </div> -->
-    
-<div class="flex items-center justify-between bg-[#f9fafb] p-4 rounded-xl font-sans mt-8">
-  <!-- 左侧文本区 -->
-  <div>
-    <div class="font-bold text-base flex items-center gap-2">
-      📱 扫码查看个人说明书
-    </div>
-    <div class="text-gray-500 text-sm mt-1">
-      「偷懒界翘楚的独白情书」
-    </div>
-  </div>
-
-  <!-- 右侧二维码 -->
-  <div>
-    <img
-      src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://link.ldd.cc"
-      alt="扫码二维码"
-      class="w-20 h-20 rounded-lg"
-    />
-  </div>
-</div>
-
-</section>
-
-<style>
-  body {
-    background: transparent;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  }
-  .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2rem 1rem 1rem;
-  }
-  .card {
-    width: 100%;
-    max-width: 500px;
-    padding: 2rem;
-    border-radius: 28px;
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 0rem;
-  }
-  .card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
-  }
-  /* 头部区块布局 */
-  .flex-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.2rem;
-    margin-bottom: 1.2rem;
-  }
-  .avatar-rainbow {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 104px;
-    height: 104px;
-    background: conic-gradient(
-      #ff0000 0deg, #ff9900 60deg, #ffee00 120deg, #33ff00 180deg,
-      #00ffee 240deg, #3300ff 300deg, #ff00cc 360deg
-    );
-    border-radius: 50%;
-    padding: 4px;
-    box-sizing: border-box;
-    /* box-shadow: 0 0 0 4px rgba(255,255,255,0.5); */
-  }
-  .avatar {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    /* border: 4px solid white; */
-    object-fit: cover;
-    margin: 0;
-    display: block;
-  }
-  .header-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0.3rem;
-    margin-top: 0.1rem;
-  }
-  .name {
-    text-align: left;
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin: 0.5rem 0 0.2rem 0;
-    color: #3a3a3a;
-  }
-  .location {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 0.2rem;
-  }
-  .location .icon {
-    width: 16px;
-    height: 16px;
-    fill: #777;
-    margin-right: 4px;
-  }
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 0.5rem;
-    margin-top: 0.2rem;
-  }
-  .tag {
-    background: rgba(93, 135, 255, 0.25);
-    color: #5d87ff;
-    padding: 0.25rem 0.8rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    transition: all 0.2s ease;
-    cursor: default;
-  }
-  .tag:hover {
-    background: #5d87ff;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-  .content {
-    margin-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  .block h2 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #3a3a3a;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .block p, .block ul {
-    font-size: 1rem;
-    color: #3a3a3a;
-    line-height: 1.7;
-  }
-  .block ul {
-    padding-left: 1.2rem;
-    list-style: disc;
-  }
-  .skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-  .skill-box {
-    background: rgba(93, 135, 255, 0.2);
-    color: #5d87ff;
-    padding: 0.4rem 0.9rem;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    transition: background 0.2s ease;
-    cursor: default;
-  }
-  .skill-box:hover {
-    background: #5d87ff;
-    color: white;
-  }
-  .footer {
-    margin-top: 2rem;
-  }
-  .footer button {
-    width: 100%;
-    background: rgba(93, 135, 255, 0.2);
-    border: none;
-    color: #5d87ff;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .footer button:hover {
-    background: #5d87ff;
-    color: white;
-  }
-  .footer .arrow {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
-  }
-  .footer button:hover .arrow {
-    transform: translateX(4px);
-  }
-
-  /* Now 区块专属样式 */
-  .now-block {
-    position: relative;
-    padding: 1.25rem 1.5rem;
-    border-radius: 20px;
-    background: rgba(255 255 255 / 0.7);
-    box-shadow:
-      0 0 8px rgba(255 132 162 / 0.8),
-      inset 0 0 12px rgba(255 132 162 / 0.5);
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    color: #913d7a;
-    font-style: italic;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    transition: border-color 3s ease-in-out;
-    animation: borderPulse 6s ease-in-out infinite;
-    user-select: none;
-  }
-  .now-block h2 {
-    color: #d94a96;
-    font-weight: 700;
-    font-style: normal;
-    letter-spacing: 0.1em;
-  }
-  .now-text {
-    margin-top: 0.4rem;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    text-indent: 2em;
-    color: #71305c;
-  }
-  .now-link {
-    display: inline-block;
-    margin-top: 0.8rem;
-    padding: 0.5rem 1.2rem;
-    background: linear-gradient(45deg, #9b59b6, #e91e63);
-    color: white;
-    font-weight: 600;
-    border-radius: 9999px;
-    text-decoration: none;
-    box-shadow: 0 0 10px #e91e63cc;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    letter-spacing: 0.05em;
-  }
-  .now-link:hover,
-  .now-link:focus {
-    box-shadow: 0 0 20px #f06292cc;
-    transform: scale(1.05);
-    outline: none;
-  }
-
-  @keyframes borderPulse {
-    0%, 100% {
-      border-color: transparent;
-      box-shadow:
-        0 0 8px rgba(255 132 162 / 0.8),
-        inset 0 0 12px rgba(255 132 162 / 0.5);
-    }
-    50% {
-      border-color: #ff84a2;
-      box-shadow:
-        0 0 20px rgba(255 132 162 / 1),
-        inset 0 0 18px rgba(255 132 162 / 0.8);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .card {
-      padding: 1.5rem;
-    }
-    .flex-header {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .avatar-rainbow {
-      margin-bottom: 0.5rem;
-    }
-    .header-info {
-      align-items: center;
-      text-align: center;
-    }
-    .name {
-      font-size: 1.5rem;
-      text-align: center;
-    }
-    .location {
-      justify-content: center;
-    }
-    .tags {
-      justify-content: center;
-    }
-    .tag {
-      font-size: 0.75rem;
-    }
-    .skill-box {
-      font-size: 0.8rem;
-    }
-    .now-block {
-      font-size: 0.95rem;
-      padding: 1rem 1.2rem;
-    }
-    .now-text {
-      text-indent: 1.5em;
-    }
-    .now-link {
-      padding: 0.45rem 1rem;
-      font-size: 0.9rem;
-    }
-  }
-</style>
+  </section>
 </Layout>
