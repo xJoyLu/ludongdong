@@ -13,9 +13,9 @@ const projects = await getAllProjects()
   <PageHead slot="head" title="About" />
   <Breadcrumbs items={[{ label: 'About', icon: 'lucide:info' }]} />
 
-<section>
-  <div class="min-w-full">
-    <div class="prose mb-8">
+  <section>
+    <div class="min-w-full">
+      <div class="prose mb-8">
       <h2>关于</h2>
       <p class="mb-4">
         我是卢东东（中式发音：/lú dōng dōng/；）
@@ -37,11 +37,11 @@ const projects = await getAllProjects()
       <li>2017年，我在一家大公司做了五年的产品经理。</li>
       <li>2022年，我在一家创业公司做了两年的产品经理。</li> 
       <li>2024年，我开始数字游民试验...</li>
+      </div>
+      <h2 class="mb-4 text-2xl font-medium">展示项目</h2>
+      <div class="flex flex-col gap-4">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
     </div>
-    <h3 class="mb-4 text-2xl font-semibold">展示项目</h3>
-    <div class="flex flex-col gap-4">
-      {projects.map((project) => <ProjectCard project={project} />)}
-    </div>
-  </div>
-</section>
+  </section>
 </Layout>

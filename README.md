@@ -10,8 +10,7 @@ astro-erudite-wu 是一个自成体系、不带任何样式的静态博客模板
 
 > [!说明]
 > 这个主题修改的内容与方向极度个人化，请勿用于商业用途，因为我不确定其稳定.
-> 当前测试版本：1.6.1  2025-06-26
-
+> 当前测试版本：1.6.3  2025-11-25
 ## 简单使用说明
 
 1. Hit &ldquo;Use this template&rdquo;, the big green button on the top right, to create a new repository in your own GitHub account with this template.

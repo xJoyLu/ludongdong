@@ -12,16 +12,15 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Home" />
-  <section>
-    <div class="rounded-lg border">
-      <div class="flex flex-col space-y-1.5 p-6">
-        <h3 class="text-3xl leading-none font-medium">lú dōng dōng</h3>
-        <p class="text-muted-foreground text-sm">
-          卢东东 &bull; 偷懒界翘楚 &bull; <span class="font-medium">@xJoyLu</span>
-        </p>
-        <!-- 添加 zen 图片  -->
+  <section class="rounded-lg border">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="text-3xl leading-none font-medium">lú dōng dōng</h3>
+      <p class="text-muted-foreground text-sm">
+        卢东东 &bull; 偷懒界翘楚 &bull; <span class="font-medium">@xJoyLu</span>
+      </p>
+      <!-- 添加 zen 图片  -->
           <div><img src="/other/zen.png" alt="zen" class="transition duration-300 dark:invert" /></div>
-        <!-- 插入数字名片 -->
+      <!-- 插入数字名片 -->
          <details>
           <summary>寻找东东</summary>
           <iframe
@@ -32,10 +31,10 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
             height="600px"
           ></iframe>
           </details>
-      </div>
-      <div class="p-6 pt-0">
+    </div>
+    <div class="p-6 pt-0">
         <p class="text-muted-foreground mb-2 text-sm">
-超业余扑街写手，孤僻固执又害羞.
+        超业余扑街写手，孤僻固执又害羞.
           <br />爱好： 🏍摩托 &bull; 👾打碟 &bull; 🎬记录 &bull; 📝写作 &bull; 🎮游戏 &bull; 🪖EDC
         </p>
         <p class="text-muted-foreground text-sm">
@@ -43,19 +42,21 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
           href="https://ldd.cc"
           class="text-foreground"
           underline
-          external>ldd.cc</Link>
+          external
+          underline>ldd.cc</Link>
           ,<Link
           href="https://ludongdong.com"
           class="text-foreground"
           underline
-          external>ludongdong.com</Link>
+          external
+          underline>ludongdong.com</Link>
           访问. 或许可以看看<Link
           href="/now"
           class="text-foreground"
+          external
           underline>我最近在干什么</Link
         >.
         </p>
-      </div>
     </div>
   </section>
   <section class="flex flex-col gap-y-4">
