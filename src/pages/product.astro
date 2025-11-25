@@ -1,8 +1,6 @@
 ---
 import Breadcrumbs from '@/components/Breadcrumbs.astro'
-import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
-import ProjectCard from '@/components/ProjectCard.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getAllProjects } from '@/lib/data-utils'
 
@@ -10,249 +8,95 @@ const projects = await getAllProjects()
 
 const products = {
   running: [
-    {
-      title: '序章XUZH',
-      desc: '一人公司',
-      icon: 'https://icons.xuzh.com/xuzh/logo.png',
-      link: 'https://xuzh.com',
-    },
-    {
-      title: '思路社区',
-      desc: '游戏爱好者与数字游民的聚集地',
-      icon: 'https://xuzh.com/assets/img/profile.webp?h=86dcf74a642f5aaf1d466c4789df7ba5',
-      link: 'https://si.lu',
-    },
-    {
-      title: 'LCC',
-      desc: '年轻人的第一个短链接！',
-      icon: 'https://icons.xuzh.com/lcc/logo.png',
-      link: 'https://lcc.cc',
-    },
-    {
-      title: '三义栈',
-      desc: '「3」步解决需求服务，让互联网更「EZ」',
-      icon: 'https://icons.xuzh.com/3ez/favicon.png',
-      link: 'https://3ez.cn',
-    },
-      {
-      title: '无所事事文化交流中心',
-      desc: '线下实体店',
-      icon: 'https://icons.xuzh.com/wusuoshishi/logo-pink.png',
-      link: 'https://wusuoshishi.com',
-    },
+    { title: '序章XUZH', desc: '一人公司', icon: 'https://icons.xuzh.com/xuzh/logo.png', link: 'https://xuzh.com' },
+    { title: '思路社区', desc: '游戏爱好者与数字游民的聚集地', icon: 'https://xuzh.com/assets/img/profile.webp?h=86dcf74a642f5aaf1d466c4789df7ba5', link: 'https://si.lu' },
+    { title: 'LCC', desc: '年轻人的第一个短链接！', icon: 'https://icons.xuzh.com/lcc/logo.png', link: 'https://lcc.cc' },
+    { title: '三义栈', desc: '「3」步解决需求服务，让互联网更「EZ」', icon: 'https://icons.xuzh.com/3ez/favicon.png', link: 'https://3ez.cn' },
+    { title: '无所事事文化交流中心', desc: '线下实体店', icon: 'https://icons.xuzh.com/wusuoshishi/logo-pink.png', link: 'https://wusuoshishi.com' },
   ],
   offline: [
-    {
-      title: '完美小组件',
-      desc: 'iPhone美化APP,老板觉得赚的少，卖掉已下线',
-      icon: 'https://icons.xuzh.com/ldd/huaya.svg',
-      link: '',
-    },   
-    {
-      title: '追星',
-      desc: '饭圈应援APP,疫情一来，投资人比粉丝跑得还快',
-      icon: 'https://icons.xuzh.com/ldd/huaya.svg',
-      link: '',
-    },
-    {
-      title: '中国证书人才网',
-      desc: '专注证书人才的招聘平台，认证层层审批，太累了',
-      icon: 'https://icons.xuzh.com/ldd/huaya.svg',
-      link: '',
-    },
+    { title: '完美小组件', desc: 'iPhone美化APP,老板觉得赚的少，卖掉已下线', icon: 'https://icons.xuzh.com/ldd/huaya.svg', link: '' },
+    { title: '追星', desc: '饭圈应援APP,疫情一来，投资人比粉丝跑得还快', icon: 'https://icons.xuzh.com/ldd/huaya.svg', link: '' },
+    { title: '中国证书人才网', desc: '专注证书人才的招聘平台，认证层层审批，太累了', icon: 'https://icons.xuzh.com/ldd/huaya.svg', link: '' },
   ],
   openSource: [
-    {
-      link: 'ludongdong',
-    },
-    {
-      link: 'icondeck',
-    },
+    { link: 'ludongdong' },
+    { link: 'icondeck' },
   ],
-};
+}
 ---
 
-<Layout class="max-w-3xl">
+<Layout class="max-w-3xl mx-auto p-4">
   <PageHead slot="head" title="Product" />
   <Breadcrumbs items={[{ label: 'Product', icon: 'lucide:layout-dashboard' }]} />
 
-      <section class="product-section">
-        <h2>✅ 运营中</h2>
-        <div class="product-list">
-          {products.running.map(item => (
-            <a class="product-item" href={item.link} target="_blank" rel="noopener noreferrer">
-              <img src={item.icon} alt={item.title} />
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section class="product-section">
-        <h2>❌ 已下线</h2>
-        <div class="product-list">
-          {products.offline.map(item => (
-            <a class="product-item offline-item" href={item.link} target="_blank" rel="noopener noreferrer">
-              <img src={item.icon} alt={item.title} />
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section class="product-section">
-        <h2>🪵 开源</h2>
-        <div class="product-list">
-          {products.openSource.map(item => (
-<a href={`https://github.com/xjoylu/${item.link}`} target="_blank"><img src={`https://github-readme-stats.vercel.app/api/pin/?username=xjoylu&repo=${item.link}`} /></a>))}
-
-        <section class="product-section">
-          <h2>📌 网站地图</h2>
-          <div class="product-list">
-            <a class="nav-card" href="/authors" target="_blank" rel="noopener noreferrer">👤 作者</a>
-            <a class="nav-card" href="/tags" target="_blank" rel="noopener noreferrer">🏷️ 标签</a>
-            <a class="nav-card" href="https://status.ldd.cc/" target="_blank" rel="noopener noreferrer">☁️ 云服务监控看板</a>
-            <a class="nav-card" href="https://echo.ldd.cc/" target="_blank" rel="noopener noreferrer">🎬 读书&观影纪录</a>
-            <a class="nav-card" href="https://link.ldd.cc/" target="_blank" rel="noopener noreferrer">🌙 个人说明书</a>
+  <!-- ✅ 运营中 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-4">✅ 运营中</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {products.running.map(item => (
+        <a
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-4 p-5 rounded-3xl bg-gradient-to-br from-white/30 via-white/20 to-white/10 backdrop-blur-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
+        >
+          <img src={item.icon} alt={item.title} class="w-14 h-14 rounded-xl shadow-md" />
+          <div>
+            <h3 class="font-bold text-lg">{item.title}</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">{item.desc}</p>
           </div>
-        </section>
+        </a>
+      ))}
+    </div>
+  </section>
 
+  <!-- ❌ 已下线 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-4">❌ 已下线</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {products.offline.map(item => (
+        <div
+          class="flex items-center gap-4 p-5 rounded-3xl bg-white/20 backdrop-blur-xl shadow-md opacity-50 cursor-not-allowed"
+        >
+          <img src={item.icon} alt={item.title} class="w-14 h-14 rounded-xl shadow-sm" />
+          <div>
+            <h3 class="font-bold text-lg">{item.title}</h3>
+            <p class="text-gray-400 text-sm">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 🪵 开源 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-4">🪵 开源</h2>
+    <div class="flex flex-wrap gap-4">
+      {products.openSource.map(item => (
+        <a
+          href={`https://github.com/xjoylu/${item.link}`}
+          target="_blank"
+          class="p-2 rounded-xl bg-gradient-to-br from-white/30 via-white/20 to-white/10 backdrop-blur-xl shadow-md hover:shadow-xl hover:scale-105 transition transform"
+        >
+          <img
+            src={`https://github-readme-stats.vercel.app/api/pin/?username=xjoylu&repo=${item.link}`}
+            class="rounded-xl"
+          />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 📌 网站地图 -->
+  <section>
+    <h2 class="text-xl font-semibold mb-4">📌 网站地图</h2>
+    <div class="flex flex-wrap gap-4">
+      <a href="/authors" class="btn glass flex-1 min-w-[120px] justify-center hover:scale-105 transition">👤 作者</a>
+      <a href="/tags" class="btn glass flex-1 min-w-[120px] justify-center hover:scale-105 transition">🏷️ 标签</a>
+      <a href="https://status.ldd.cc/" class="btn glass flex-1 min-w-[120px] justify-center hover:scale-105 transition">☁️ 云服务监控看板</a>
+      <a href="https://echo.ldd.cc/" class="btn glass flex-1 min-w-[120px] justify-center hover:scale-105 transition">🎬 读书&观影纪录</a>
+      <a href="https://link.ldd.cc/" class="btn glass flex-1 min-w-[120px] justify-center hover:scale-105 transition">🌙 个人说明书</a>
+    </div>
+  </section>
 </Layout>
-
-
-    <style>
-      .product-section {
-        margin-bottom: 2.5rem;
-      }
-
-      .product-section h2 {
-        color: #111;  
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .product-section h2 {
-          color: #333;
-        }
-      }
-
-      .product-list {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .product-item {
-        display: flex;
-        align-items: center;
-        padding: 1rem;
-        border-radius: 1rem;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: saturate(180%) blur(10px);
-        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
-        transition: background-color 0.3s ease;
-        cursor: pointer;
-        text-decoration: none;
-        color: inherit;
-      }
-
-      .product-item:hover {
-        background: rgba(255, 255, 255, 0.7);
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .product-item {
-          background: rgba(0, 0, 0, 0.4);
-          box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
-          color: #ddd;
-        }
-
-        .product-item:hover {
-          background: rgba(0, 0, 0, 0.7);
-        }
-      }
-
-      .product-item img {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        margin-right: 1rem;
-        box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-      }
-
-      .product-item.offline-item {
-        opacity: 0.6;
-      }
-
-      .product-item h3 {
-        margin: 0;
-        font-weight: 700;
-        font-size: 1rem;
-      }
-
-      .product-item p {
-        margin: 0.25rem 0 0;
-        font-size: 0.875rem;
-        color: #444;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .product-item p {
-          color: #bbb;
-        }
-      }
-
-/* 📦 导航区块容器 2.x 新增*/
-.product-section {
-  margin-bottom: 2.5rem;
-  /*修改为紧凑布局 padding: 1rem;*/
-}
-
-/* 📚 导航按钮列表容器：横向排列 + 自动换行 */
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-start;
-}
-
-/* 🧊 每个导航按钮卡片 */
-.nav-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 140px;
-  height: 80px;
-  padding: 1rem;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-  color: #111;
-  text-align: center;
-  transition: all 0.2s ease-in-out;
-}
-
-/* 🪄 鼠标悬停效果 */
-.nav-card:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateY(-2px) scale(1.03);
-}
-
-/* 📱 移动端优化（可选） */
-@media (max-width: 500px) {
-  .nav-card {
-    width: 100%;
-  }
-}
-    </style>
